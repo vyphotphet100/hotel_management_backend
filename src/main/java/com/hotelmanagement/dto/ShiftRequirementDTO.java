@@ -1,14 +1,12 @@
 package com.hotelmanagement.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ShiftRequirementDTO extends BaseDTO{
 	
 	private Integer numOfAdmin;
 	private Integer numOfReception;
 	private Integer numOfLabor;
-	private List<ShiftWeekdayRequirementDTO> shiftWeekdayRequirements = new ArrayList<ShiftWeekdayRequirementDTO>();
+	private Long shiftId;
+	
 	public Integer getNumOfAdmin() {
 		return numOfAdmin;
 	}
@@ -27,12 +25,11 @@ public class ShiftRequirementDTO extends BaseDTO{
 	public void setNumOfLabor(Integer numOfLabor) {
 		this.numOfLabor = numOfLabor;
 	}
-	public List<ShiftWeekdayRequirementDTO> getShiftWeekdayRequirements() {
-		return shiftWeekdayRequirements;
+	public Long getShiftId() {
+		return shiftId;
 	}
-	public void setShiftWeekdayRequirements(List<ShiftWeekdayRequirementDTO> shiftWeekdayRequirements) {
-		this.shiftWeekdayRequirements = shiftWeekdayRequirements;
+	public void setShiftId(Long shiftId) {
+		this.shiftId = shiftId;
 	}
-	
 	
 }

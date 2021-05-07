@@ -12,11 +12,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import com.hotelmanagement.dto.RoleDTO;
+import com.hotelmanagement.dto.ShiftDTO;
 import com.hotelmanagement.dto.StaffDTO;
 import com.hotelmanagement.dto.TokenDTO;
 import com.hotelmanagement.entity.CheckInEntity;
 import com.hotelmanagement.entity.CheckOutEntity;
 import com.hotelmanagement.entity.RoleEntity;
+import com.hotelmanagement.entity.ShiftEntity;
 import com.hotelmanagement.entity.StaffEntity;
 import com.hotelmanagement.entity.TokenEntity;
 import com.hotelmanagement.repository.CheckInRepository;
@@ -132,6 +134,16 @@ public class Converter {
 
 			return (T) tokenDto;
 		}
+		else if (resObj instanceof ShiftDTO) {
+			ShiftDTO shiftDto = (ShiftDTO) resObj;
+			ShiftEntity shiftEntity = (ShiftEntity) entity;
+
+			if (shiftEntity.getStaffs() != null) 
+				for (StaffEntity staffEntity : shiftEntity.getStaffs())
+				shiftDto.getStaffUsernames().add(staffEntity.getUsername());
+
+			return (T) shiftDto;
+		}
 
 		return resObj;
 	}
@@ -188,6 +200,16 @@ public class Converter {
 				tokenEntity.setStaff(staffRepo.findOneByUsername(tokenDto.getStaffUsername()));
 
 			return (T) tokenEntity;
+		}
+		else if (resObj instanceof ShiftEntity) {
+			ShiftEntity shiftEntity = (ShiftEntity) resObj;
+			ShiftDTO shiftDto = (ShiftDTO) dto;
+
+			if (shiftDto.getStaffUsernames() != null) 
+				for (String staffUsername : shiftDto.getStaffUsernames())
+				shiftEntity.getStaffs().add(staffRepo.findOneByUsername(staffUsername));
+
+			return (T) shiftEntity;
 		}
 
 		return (T) resObj;

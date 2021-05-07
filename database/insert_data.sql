@@ -318,6 +318,7 @@ VALUES (10, 2);
 INSERT INTO staff_shift (staff_id, shift_id) 
 VALUES (10, 14);
 
+INSERT INTO staff_shift (staff_id, shift_id) 
 VALUES (12, 2);
 INSERT INTO staff_shift (staff_id, shift_id) 
 VALUES (12, 14);

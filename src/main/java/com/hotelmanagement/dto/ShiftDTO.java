@@ -11,7 +11,7 @@ public class ShiftDTO extends BaseDTO{
 	private Date startTime;
 	private Date endTime;
 	private List<String> staffUsernames = new ArrayList<String>();
-	private List<ShiftWeekdayRequirementDTO> shiftWeekdayRequirements = new ArrayList<ShiftWeekdayRequirementDTO>();
+	private Long shiftRequirementId;
 	
 	public String getCode() {
 		return code;
@@ -43,12 +43,11 @@ public class ShiftDTO extends BaseDTO{
 	public void setStaffUsernames(List<String> staffUsernames) {
 		this.staffUsernames = staffUsernames;
 	}
-	public List<ShiftWeekdayRequirementDTO> getShiftWeekdayRequirements() {
-		return shiftWeekdayRequirements;
+	public Long getShiftRequirementId() {
+		return shiftRequirementId;
 	}
-	public void setShiftWeekdayRequirements(List<ShiftWeekdayRequirementDTO> shiftWeekdayRequirements) {
-		this.shiftWeekdayRequirements = shiftWeekdayRequirements;
+	public void setShiftRequirementId(Long shiftRequirementId) {
+		this.shiftRequirementId = shiftRequirementId;
 	}
-	
 	
 }

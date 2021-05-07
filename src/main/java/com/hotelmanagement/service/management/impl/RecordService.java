@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hotelmanagement.converter.ShiftMapping;
+import com.hotelmanagement.dto.RecordDTO;
 import com.hotelmanagement.dto.StaffDTO;
 import com.hotelmanagement.entity.CheckInEntity;
 import com.hotelmanagement.entity.CheckOutEntity;
@@ -25,7 +26,7 @@ import com.hotelmanagement.utils.MyUtil;
 
 @Service
 public class RecordService extends BaseService implements IRecordService {
-	
+
 	@Autowired
 	private IStaffService staffService;
 
@@ -35,13 +36,13 @@ public class RecordService extends BaseService implements IRecordService {
 	@Autowired
 	private CheckOutRepository checkOutRepo;
 
-	@Autowired 
+	@Autowired
 	private ShiftRepository shiftRepo;
-	
+
 	@Autowired
 	private RecordRepository recordRepo;
-	
-	@Autowired 
+
+	@Autowired
 	private RoleRepository roleRepo;
 
 	@Override
@@ -86,7 +87,8 @@ public class RecordService extends BaseService implements IRecordService {
 						.contains(ShiftMapping.map(checkInEntities.get(k).getDate()))) {
 					workHourL += checkOutTime.getTime() - checkInTime.getTime();
 				}
-				// if this shift is not the shift of this staff then we compute compensation hour
+				// if this shift is not the shift of this staff then we compute compensation
+				// hour
 				else {
 					compenHourL += checkOutTime.getTime() - checkInTime.getTime();
 				}
@@ -100,7 +102,7 @@ public class RecordService extends BaseService implements IRecordService {
 			// compute and save resting hour
 			Integer restHour = 0;
 			// get day of week of today
-			Integer weekday = MyUtil.getDayOfWeek(new Date());
+			Integer weekday = MyUtil.getDayOfWeek(recordForDate);
 			// find shift by day of week
 			List<ShiftEntity> shiftEntities = shiftRepo.findAllByWeekday(weekday);
 			// Create new list to save which shift of this day the staff work for
@@ -117,26 +119,26 @@ public class RecordService extends BaseService implements IRecordService {
 					restHour = 12 - workHour;
 				else
 					restHour = 10 - workHour;
-			} else if (shifts.size() == 1)
+			} else
 				restHour = 22 - workHour;
 			// save
 			recordEntity.setTotalRestingTime(restHour);
-			
+
 			// compute and save wage
-			RoleEntity roleEntity = roleRepo.findOneByCode(((StaffDTO)staffDtos.get(i)).getRoleCode());
+			RoleEntity roleEntity = roleRepo.findOneByCode(((StaffDTO) staffDtos.get(i)).getRoleCode());
 			Long wageEveryHour = roleEntity.getWageEveryHour();
 			Long wage = workHour * wageEveryHour;
 			recordEntity.setWage(wage);
-			
+
 			// compute and save fine
-			Long fine = (wageEveryHour*2) * restHour;
+			Long fine = (wageEveryHour * 2) * restHour;
 			recordEntity.setFine(fine);
-			
-			//compute and save compensation wage
-			Long compenWage = (wageEveryHour*2) * compenHour;
+
+			// compute and save compensation wage
+			Long compenWage = (wageEveryHour * 2) * compenHour;
 			recordEntity.setCompensationWage(compenWage);
-			
-			//compute and save total wage
+
+			// compute and save total wage
 			Long totalWage = compenWage + wage - fine;
 			recordEntity.setTotalWage(totalWage);
 
@@ -144,6 +146,20 @@ public class RecordService extends BaseService implements IRecordService {
 			recordRepo.save(recordEntity);
 			System.out.print("Save record for " + ((StaffDTO) staffDtos.get(i)).getUsername() + ".\n");
 		}
+	}
+
+	@Override
+	public RecordDTO findAll() {
+		RecordDTO recordDto = new RecordDTO();
+		List<RecordEntity> recordEntities = recordRepo.findAll();
+		if (!recordEntities.isEmpty()) {
+			for (RecordEntity recordEntity : recordEntities)
+				recordDto.getListResult().add(this.converter.toDTO(recordEntity, RecordDTO.class));
+			recordDto.setMessage("Load record list successfully.");
+			return recordDto;
+		}
+
+		return (RecordDTO) this.ExceptionObject(recordDto, "There is no record.");
 	}
 
 }
