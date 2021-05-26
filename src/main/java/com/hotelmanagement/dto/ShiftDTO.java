@@ -6,6 +6,7 @@ import java.util.List;
 
 public class ShiftDTO extends BaseDTO{
 
+	private Long id;
 	private String code;
 	private String name;
 	private Date startTime;
@@ -48,6 +49,12 @@ public class ShiftDTO extends BaseDTO{
 	}
 	public void setShiftRequirementId(Long shiftRequirementId) {
 		this.shiftRequirementId = shiftRequirementId;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }

@@ -4,8 +4,9 @@ import java.util.Date;
 
 public class RecordDTO extends BaseDTO{
 
+	private Long id;
 	private Date date;
-	private Integer datOfWeek;
+	private Integer dayOfWeek;
 	private String staffUsername;
 	private String staffFullname;
 	private Integer totalWorkingHour;
@@ -22,11 +23,11 @@ public class RecordDTO extends BaseDTO{
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public Integer getDatOfWeek() {
-		return datOfWeek;
+	public Integer getDayOfWeek() {
+		return dayOfWeek;
 	}
-	public void setDatOfWeek(Integer datOfWeek) {
-		this.datOfWeek = datOfWeek;
+	public void setDayOfWeek(Integer dayOfWeek) {
+		this.dayOfWeek = dayOfWeek;
 	}
 	public String getStaffUsername() {
 		return staffUsername;
@@ -81,6 +82,12 @@ public class RecordDTO extends BaseDTO{
 	}
 	public void setTotalWage(Long totalWage) {
 		this.totalWage = totalWage;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

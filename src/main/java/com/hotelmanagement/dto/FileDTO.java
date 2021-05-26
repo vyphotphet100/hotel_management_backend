@@ -2,6 +2,7 @@ package com.hotelmanagement.dto;
 
 public class FileDTO extends BaseDTO{
 
+	private Long id;
 	private String base64;
 	private String fileName;
 	private String fileType;
@@ -23,6 +24,12 @@ public class FileDTO extends BaseDTO{
 	}
 	public void setFileType(String fileType) {
 		this.fileType = fileType;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 
 public class BaseDTO{
 
-	private Long id;
+	
 	private Date createdDate;
 	private String createdBy;
 	private Date modifiedDate;
@@ -19,12 +19,6 @@ public class BaseDTO{
 	private List<Object> listResult = new ArrayList<Object>();
 	private List<Object> listRequest = new ArrayList<Object>();
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public Date getCreatedDate() {
 		return createdDate;
 	}

@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class StaffDTO extends BaseDTO implements UserDetails{
 
+	private Long id;
 	private String username;
 	private String password;
 	private String fullname;
@@ -106,6 +107,13 @@ public class StaffDTO extends BaseDTO implements UserDetails{
 	}
 	public void setCheckOutDates(List<String> checkOutDates) {
 		this.checkOutDates = checkOutDates;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

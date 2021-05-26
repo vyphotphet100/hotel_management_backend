@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class CheckInDTO extends BaseDTO{
 	
+	private Long id;
 	private Date date;
 	private Long staffId;
 
@@ -21,6 +22,14 @@ public class CheckInDTO extends BaseDTO{
 
 	public void setStaffId(Long staffId) {
 		this.staffId = staffId;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

@@ -14,6 +14,7 @@ public class BaseService implements IBaseService{
 
 	@Override
 	public BaseDTO ExceptionObject(BaseDTO dto, String message) {
+		
 		dto.setHttpStatus(HttpStatus.ALREADY_REPORTED);
 		dto.setMessage(message);
 		return dto;

@@ -61,6 +61,12 @@ public class StaffEntity extends BaseEntity {
 	
 	@OneToMany(mappedBy = "staff")
 	private List<CheckOutEntity> checkOuts = new ArrayList<CheckOutEntity>();
+	
+	@ManyToMany(mappedBy = "staffs")
+	private List<RoomCheckInEntity> roomCheckIns = new ArrayList<RoomCheckInEntity>();
+	
+	@ManyToMany(mappedBy = "staffs")
+	private List<RoomCheckOutEntity> roomCheckOuts = new ArrayList<RoomCheckOutEntity>();
 
 	public String getUsername() {
 		return username;
@@ -158,4 +164,21 @@ public class StaffEntity extends BaseEntity {
 		this.checkOuts = checkOuts;
 	}
 
+	public List<RoomCheckInEntity> getRoomCheckIns() {
+		return roomCheckIns;
+	}
+
+	public void setRoomCheckIns(List<RoomCheckInEntity> roomCheckIns) {
+		this.roomCheckIns = roomCheckIns;
+	}
+
+	public List<RoomCheckOutEntity> getRoomCheckOuts() {
+		return roomCheckOuts;
+	}
+
+	public void setRoomCheckOuts(List<RoomCheckOutEntity> roomCheckOuts) {
+		this.roomCheckOuts = roomCheckOuts;
+	}
+
+	
 }

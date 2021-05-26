@@ -323,8 +323,29 @@ VALUES (12, 2);
 INSERT INTO staff_shift (staff_id, shift_id) 
 VALUES (12, 14);
 
+INSERT INTO customer (fullname, identity_card_number, phone, day_in, day_out, real_day_out, picture) VALUES
+("Cao Đinh Sỹ Vỹ", "8379817412398", "0975543975", "2021-5-22 10:39:13", "2021-5-25 10:39:13", "2021-5-25 12:39:13", "/api/file/customer/1/avatar.png"), 
+("Đinh Thị Thùy Linh", "9379817412399", "0975543976", "2021-5-22 10:39:13", "2021-5-25 10:39:13", "2021-5-25 10:39:13", "/api/file/customer/2/avatar.png");
 
 
+INSERT INTO room (id, type, status) VALUES
+("101", "1PERSON", "EMPTY"),
+("102", "2PEOPLE", "EMPTY"),
+("103", "3PEOPLE", "EMPTY"),
+("104", "4PEOPLE", "EMPTY"),
+("201", "1PERSON", "EMPTY"),
+("202", "2PEOPLE", "EMPTY"),
+("203", "3PEOPLE", "EMPTY"),
+("204", "4PEOPLE", "EMPTY");
 
+
+INSERT INTO room_check_in (customer_id, room_id, date) VALUES
+(1, "101", "2021-5-22 10:39:13"),
+(2, "201", "2021-5-22 10:39:13");
+
+
+INSERT INTO room_check_out (customer_id, room_id, date) VALUES
+(1, "101", "2021-5-25 10:39:13"),
+(2, "201", "2021-5-26 10:39:13");
 
 

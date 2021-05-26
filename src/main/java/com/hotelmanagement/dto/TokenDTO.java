@@ -1,6 +1,7 @@
 package com.hotelmanagement.dto;
 
 public class TokenDTO extends BaseDTO{
+	private Long id;
 	private String code;
     private String staffUsername;
 	public String getCode() {
@@ -14,6 +15,12 @@ public class TokenDTO extends BaseDTO{
 	}
 	public void setStaffUsername(String staffUsername) {
 		this.staffUsername = staffUsername;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }

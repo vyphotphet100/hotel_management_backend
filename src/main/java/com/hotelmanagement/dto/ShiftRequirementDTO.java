@@ -2,6 +2,7 @@ package com.hotelmanagement.dto;
 
 public class ShiftRequirementDTO extends BaseDTO{
 	
+	private Long id;
 	private Integer numOfAdmin;
 	private Integer numOfReception;
 	private Integer numOfLabor;
@@ -30,6 +31,12 @@ public class ShiftRequirementDTO extends BaseDTO{
 	}
 	public void setShiftId(Long shiftId) {
 		this.shiftId = shiftId;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }
